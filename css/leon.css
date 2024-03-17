@@ -1,0 +1,505 @@
+/*
+1-globale rules
+2-normalize 
+3-font awesome
+4-container and responsive 
+5-header and links
+*/
+/*Start Variables*/
+:root {
+  --main-color: #10cab7;
+  --secondary-color: #2c4755;
+}
+/*End Variables*/
+
+/*Start Global Rules ==> rules(اللي رح تكون ماشية على العناصر كلها) */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Work Sans", sans-serif;
+}
+
+/*              Font Awesome library
+-Font Awesome is a popular library of icons and symbols that you can use in your web projects. 
+    It provides a collection of scalable vector icons that can be easily customized using CSS
+-هي مكتبة ايقونات تستعمل لاضافة ايقونات الى موقع بدل منةاضافة الصور لان الصورة عند تغيير حجمها رح يخرب شكلها
+-يمكنك التعامل مع الايقونات هاي كأنك تتعامل مع نص تغيير الحجم واللون والتمدد والخ
+-steps:
+       -search fot Fone Awesome ==> download ==> free for web ==> extract the file ==>
+            ==> copy webfonts folder to your project folder(وليس داخله عشان الايقونات تشتغلcss لازم يكون جنب مجلد ال ) ==>
+            ==> in css folder:all.css,all.main.css عندي ملفين  
+                              -all.css ملف الاكواد العادي
+                              -all.main.css ملف الاكواد المضغوط
+            ==> copy all.main.css to your css folder هذا الملف هو اللي رح ينادي مجلد  
+                                                    (webfonts)
+            ==> in html's head use <link rel="stylesheet" href="../all.main.css"
+            ==> u can copy any icon from the font awesome as <i></i> and modified it
+
+        -font-size: to resize the icon
+        -color: color of icon
+*/
+
+/*                                      .container(بمساحة ثابتة)
+-تستخدم لاحتواء العناصر وعزلهن عن المحتوى
+-تخلي العناصر كلهن  اذا بدك على نفس المستوى العمودي
+-لو عندك عنصر بدك تحطلو خلفية تتمدد على كل الحاوية والعناصر داخله تكون في المنتصف
+*/
+.container {
+  padding-left: 15px; /*عشان الكلام ما يبدا من الاول في الحاوية ويوصل للاخير*/
+  padding-right: 15px;
+  margin-left: auto; /*توسيط الحاوية*/
+  margin-right: auto;
+}
+/*make the container responsive ==> prevents the scrol; on small screens*/
+/*small ==> from 0px to 678px: full screen ,from 678px to 991px: 750px*/
+@media (min-width: 678px) {
+  .container {
+    width: 750px;
+  }
+}
+/*medium*/
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/*large*/
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+/*End Global Rules*/
+/*Start Componants*/
+.special-heading {
+  font-weight: 800;
+  font-size: 100px;
+  text-align: center;
+  letter-spacing: -3px;
+  color: #ebeced;
+  margin: 0;
+}
+.special-heading + p {
+  text-align: center;
+  color: #797979;
+  margin: -30px 0px 0px;
+  font-size: 20px;
+}
+@media (max-width: 678px) {
+  .special-heading {
+    font-size: 60px;
+  }
+  .special-heading + p {
+    font-size: 10px;
+    top: 38px;
+  }
+}
+/*End Componants*/
+/*
+-scroll-behavior: auto|smoth; 
+                -auto ==> default
+                -smoth :specifies whether to smoothly animate the scroll position, 
+                        instead of a straight jump, when the user clicks on a link within a scrollable box.
+*/
+html {
+  -webkit-scroll-behavior: smooth;
+  -moz-scroll-behavior: smooth;
+  -ms-scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+/*Start Header*/
+.header {
+  padding: 20px;
+}
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header .logo {
+  width: 60px;
+}
+.header .links {
+  position: relative; /*there is an icon will hiver on it ==> get links , position:relative for position absoulte */
+}
+.header .links:hover .icon span:nth-child(2) {
+  width: 100%;
+}
+.header .links .icon {
+  width: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.header .links .icon span {
+  background-color: #333;
+  margin-bottom: 5px;
+}
+.header .links .icon span:first-child {
+  height: 2px;
+  width: 100%;
+}
+.header .links .icon span:nth-child(2) {
+  height: 2px;
+  width: 60%;
+  transition: 0.3s;
+}
+.header .links .icon span:last-child {
+  height: 2px;
+  width: 100%;
+}
+.header .links ul {
+  list-style: none;
+  background-color: #f6f6f6;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  right: 0px;
+  min-width: 200px;
+  top: calc(100% + 15px);
+  z-index: 999;
+  display: none;
+}
+.header .links ul::before {
+  content: "";
+  position: absolute;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #f6f6f6 transparent;
+  top: -20px;
+  right: 5px;
+}
+.header .links ul li a {
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+  color: #333;
+  transition: 0.3s;
+}
+.header .links ul li a:hover {
+  padding-left: 25px;
+}
+
+.header .links ul li:not(:last-child) a {
+  /*add a line between links*/
+  border: 1px solid #ddd;
+}
+.header .links:hover ul {
+  /*can make it better using js*/
+  display: block;
+}
+/*End Header*/
+
+/*Start Landing Section جزء الصفحة الرئيسية الذي يعمل على استقبال الزوار*/
+.landing {
+  background: url(../images/landing.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: calc(100vh - 64px);
+  position: relative;
+}
+.landing .intro-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  width: 380px;
+  max-width: 100%; /*تضمن ان النص ما يطلع برا الحاوية بتاعه*/
+  transform: translate(-50%, -50%);
+}
+.landing .intro-text h1 {
+  margin: 0px;
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--main-color, black);
+}
+.landing .intro-text p {
+  font-size: 19px;
+  line-height: 1.8;
+}
+/*End Landing Section */
+/*Start Features*/
+.features {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: #f6f6f6;
+}
+.features .container {
+  display: grid;
+  /*(responsive)auto-fill يملى الاعمدة حسب المساحة المتوفرة حاليا*/
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+.features .container .feat {
+  padding: 10px;
+  text-align: center;
+}
+.features .container .feat i {
+  color: var(--main-color, black);
+  font-size: 30px;
+}
+.features .container .feat h3 {
+  font-weight: 800;
+  margin: 30px 0px;
+}
+.features .container .feat p {
+  line-height: 1.8;
+  color: #797979;
+}
+/*End Features*/
+/* Start Services */
+.services {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.services .container {
+  position: relative;
+}
+
+.services .container .services-content {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+.services .container .services-content .serv {
+  display: flex;
+  margin-bottom: 40px;
+}
+@media (max-width: 676px) {
+  .services .container .services-content .serv {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+.services .container .services-content .serv i {
+  color: var(--main-color);
+  font-size: 30px;
+  margin-right: 20px;
+}
+.services .container .services-content .serv .text {
+  flex: 1; /*flex: 1; to a flex item, it tells the item to grow and fill the available space along the main axis of the flex container*/
+}
+.services .container .services-content .serv .text h3 {
+  margin: 0px 0px 30px;
+}
+.services .container .services-content .serv .text p {
+  color: #717070;
+  line-height: 1.8;
+  font-weight: 300;
+}
+.services .container .services-content .image {
+  position: relative;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+.services .services-content .image img {
+  height: 280px;
+  width: 200px;
+}
+.services .services-content .image::before {
+  content: "";
+  background-color: var(--secondary-color);
+  position: absolute;
+  top: -40px;
+  right: 125px;
+  height: calc(100% + 80px);
+  width: 80px;
+  z-index: -1;
+}
+@media (max-width: 1199px) {
+  .services .container .services-content .col .image {
+    display: none;
+  }
+}
+/* End Services */
+/*Start Portfolio Section*/
+.portfolio {
+  background-color: #fafafa;
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.portfolio .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding-top: 60px;
+}
+.portfolio .container .image img {
+  height: 200px;
+  width: 100%;
+}
+.portfolio .container h3 {
+  color: #1f2021;
+  margin: 10px 0px -10px;
+}
+.portfolio .container p {
+  color: #717070;
+  line-height: 1.8;
+  font-weight: 300;
+}
+.portfolio .container .col {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.portfolio .container .txt {
+  padding-left: 20px;
+}
+/*End Portfolio Section*/
+/*Start About Section*/
+.about {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.about .about-content {
+  margin-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+@media (max-width: 800px) {
+  .about .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+.about .about-content .image {
+  position: relative;
+  width: 250px;
+  height: 375px;
+}
+@media (max-width: 800px) {
+  .about .about-content .image {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.about .about-content .image::before {
+  content: "";
+  background-color: #ebeced;
+  width: 80px;
+  height: 455px;
+  position: absolute;
+  left: -10px;
+  top: -40px;
+  z-index: -1;
+}
+.about .about-content .image::after {
+  content: "";
+  width: 94px;
+  height: 250px;
+  position: absolute;
+  top: -40px;
+  right: -120px;
+  border-left: 80px solid var(--main-color);
+  border-bottom: 80px solid var(--main-color);
+  z-index: -1;
+}
+@media (max-width: 800px) {
+  .about .about-content .image::before,
+  .about .about-content .image::after {
+    display: none;
+  }
+}
+.about .about-content .text {
+  flex-basis: calc(100% - 500px);
+}
+.about .about-content .text p:first-of-type {
+  font-weight: bold;
+  line-height: 2;
+  margin-bottom: 50px;
+}
+/*borderوالتحكم يكون في ال  inline-block حول الى  hr للتحكم في */
+.about .about-content .text hr {
+  display: inline-block;
+  width: 50%;
+  border-color: var(--main-color);
+}
+.about .about-content .text p:nth-of-type(2) {
+  line-height: 2;
+  color: #575757;
+}
+/*End About Section*/
+/*Start contact Section*/
+.contact {
+  background-color: #fafafa;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  height: calc(100vh - 60px);
+}
+.contact .contact-content {
+  margin-top: 60px;
+  line-height: 0.6;
+}
+.contact .contact-content p:first-of-type {
+  color: #2c4755;
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: -1px;
+}
+.contact .contact-content p:nth-of-type(2) {
+  color: var(--main-color);
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: -2px;
+  padding-left: 20px;
+}
+@media (max-width: 790px) {
+  .contact .contact-content p:nth-of-type(2) {
+    padding-left: 0px !important;
+  }
+}
+@media (max-width: 430px) {
+  .contact .contact-content p:first-of-type,
+  .contact .contact-content p:nth-of-type(2) {
+    font-size: 27px;
+  }
+}
+.social-networks {
+  display: flex;
+  padding-left: 110px;
+}
+@media (max-width: 790px) {
+  .social-networks {
+    padding-left: 15px;
+  }
+}
+.social-networks p {
+  line-height: 0.6;
+  letter-spacing: -1px;
+}
+.links-icons {
+  margin: 10px 25px;
+}
+.links-icons i {
+  margin: 0px 10px;
+  font-size: 20px;
+  color: black;
+}
+/*End contact Section*/
+/*Start Footer*/
+footer {
+  background-color: var(--secondary-color);
+  height: 60px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer p {
+  margin-left: 5px;
+  color: white;
+  font-weight: bold;
+}
+footer p span {
+  color: var(--main-color);
+}
+footer i {
+  color: white;
+}
+
+/*End Footer*/
